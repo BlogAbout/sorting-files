@@ -1,0 +1,16 @@
+1
+2
+3
+a
+aa
+aaa
+b
+bb
+bbb
+bbbb
+ZZZZ
+Z
+XXX
+A
+ZerrorSorting
+100A

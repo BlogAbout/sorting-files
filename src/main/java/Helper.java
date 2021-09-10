@@ -32,9 +32,8 @@ public class Helper {
     public void removeTmpAllFiles() {
         cleanTmpFiles();
         File file = new File(fileNameTmpFiles);
-        //file.deleteOnExit();
-        if (file.exists() && !file.delete())
-            System.err.printf("Ошибка удаления временного файла %s. Файл пропущен.\n", fileNameTmpFiles);
+        if (file.exists())
+            file.deleteOnExit();
     }
 
     /**
@@ -63,12 +62,13 @@ public class Helper {
                                     int intLine = sorter.stringToInteger(line);
                                 } catch (NumberFormatException e) {
                                     System.err.printf(
-                                            "В строке %d значение %s не является числом по причине %s. Строка пропущена.\n",
+                                            "В строке %d файла '%s' значение '%s' не является числом по причине %s. Строка пропущена.\n",
                                             indexIterator,
+                                            fileName,
                                             line,
                                             e.getMessage()
                                     );
-                                    return;
+                                    continue;
                                 }
                             }
 
@@ -161,6 +161,7 @@ public class Helper {
                 File destination = new File(Init.outputFileName);
                 sorter.merge(destination, left, right);
             }
+            System.out.printf("Сортировка завершена. Результат сохранен в файле %s.", Init.outputFileName);
         } catch (IOException e) {
             System.err.printf("Ошибка чтения файла %s по причине %s.\n", fileNameTmpFiles, e.getMessage());
         }
@@ -218,8 +219,8 @@ public class Helper {
             while (iterator.hasNext()) {
                 String currentFileName = iterator.next();
                 File tmpFile = new File(currentFileName);
-                if (tmpFile.exists() && !tmpFile.delete())
-                    System.err.printf("Ошибка удаления временного файла %s. Файл пропущен.\n", currentFileName);
+                if (tmpFile.exists())
+                    tmpFile.deleteOnExit();
             }
         } catch (IOException e) {
             System.err.printf("Ошибка открытия временного файла для удаления по причине %s. Файл пропущен.\n", e.getMessage());

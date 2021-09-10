@@ -75,7 +75,7 @@ public class ParseCommandLine {
 
     private void usagePrint(Options options) {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("java -jar filesorter.jar [OPTIONS] output.file input.files...\n" +
+        formatter.printHelp("java -jar sorting-files-jar-with-dependencies.jar [OPTIONS] output.file input.files...\n" +
                 "output.file Обязательное имя файла с результатом сортировки.\n" +
                 "input.files Один или более входных файлов.\n", options);
     }
